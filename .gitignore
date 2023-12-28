@@ -1,0 +1,19 @@
+# Node.js
+**/node_modules/
+
+# Build output
+**/build/
+**/dist/
+
+# Environment variables
+.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and artifacts
+logs/
+*.log
