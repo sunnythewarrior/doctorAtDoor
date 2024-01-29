@@ -1,16 +1,32 @@
 const jwt = require("jsonwebtoken");
-require("dotenv").config(); // Load environment variables from .env file
+const User = require("../models/user"); // Import your User model
+require("dotenv").config();
 
 // Secret key for signing and verifying tokens
-const secretKey = process.env.SECRET_KEY; // Use the correct environment variable name
+const secretKey = process.env.SECRET_KEY;
 
 // Function to generate a JWT
-const generateToken = (payload) => {
-  const options = {
-    expiresIn: "1h", // Token expiration time (e.g., 1 hour)
-  };
+const generateToken = async (userId) => {
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("User not found");
+    }
 
-  return jwt.sign(payload, secretKey, options);
+    const payload = {
+      userId: user._id.toString(),
+      userRole: user.userType.toLowerCase(), // Assuming userType represents the user role
+    };
+
+    const options = {
+      expiresIn: "1h",
+    };
+
+    return jwt.sign(payload, secretKey, options);
+  } catch (error) {
+    console.error("Error generating token:", error.message);
+    throw new Error("Token generation failed");
+  }
 };
 
 // Function to verify a JWT
@@ -23,18 +39,3 @@ const verifyToken = (token) => {
     throw new Error("Token verification failed");
   }
 };
-
-// Example usage:
-const userId = "123";
-const userRole = "user";
-
-// Generate a token
-const token = generateToken({ userId, userRole });
-
-// Verify the token
-try {
-  const decodedToken = verifyToken(token);
-  console.log("Decoded Token:", decodedToken);
-} catch (error) {
-  console.error("Token verification failed:", error.message);
-}

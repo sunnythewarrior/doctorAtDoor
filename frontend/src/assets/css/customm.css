@@ -1,0 +1,53 @@
+@import "~react-toastify/dist/ReactToastify.css";
+
+.main {
+    display: flex;
+    height: 100vh;
+    /* Set the height of the main container to the full viewport height */
+}
+
+.form-half {
+    flex: 1;
+    /* Make the form-half take up 50% of the available width */
+    padding: 20px;
+
+    background-color: #f0f0f0;
+
+}
+
+.image-banner {
+    flex: 1;
+ 
+    background-color: #e0e0e0;
+  
+}
+.paper{
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.registration-title{
+color: skyblue;
+margin-top: 2px;
+}
+.regisration-link{
+    margin-left: 380px !important;
+    color:blue
+}
+.registration-banner{
+    width: 615px;
+    height: 700px;
+}
+.submit-button{
+    background: skyblue !important;
+}
+
+.dashboard-banner{
+    color:skyblue;
+    display : flex;
+    font-weight: 500;
+
+}
+.arrow{
+    margin-top: 1rem;
+}

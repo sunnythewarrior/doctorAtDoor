@@ -15,9 +15,13 @@ app.use(bodyParser.json());
 
 // Use routes
 const userRoutes = require("./routes/user");
-app.use("/api/users", userRoutes);
+const countriesRoutes = require("./routes/countries");
+const statesRoutes = require("./routes/states");
 
-const PORT = process.env.PORT || 5000; // Use uppercase PORT
+app.use("/api/users", userRoutes);
+app.use("/api/countries", countriesRoutes);
+app.use("/api/states", statesRoutes);
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Application running on port ${PORT}`);
 });
